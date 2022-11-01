@@ -39,8 +39,7 @@ namespace TestProject
         [Fact]
         public void fives()
         {
-            Assert.Equal(15, new Yatzy(new List<Die> { new(4), new(4), new(5), new(5), new(5) }).Fives());
-            Assert.Equal(10, new Yatzy(new List<Die> { new (4), new (4), new (4), new (5), new(5)}).Fives());
+            Assert.Equal(10, new Yatzy(new List<Die> { new (4), new (4), new (4), new (5), new(5) }).Fives());
             Assert.Equal(20, new Yatzy(new List<Die> { new(4), new(5), new(5), new(5), new(5) }).Fives());
         }
 
@@ -55,9 +54,9 @@ namespace TestProject
         [Fact]
         public void fours_Fact()
         {
-            Assert.Equal(12, new Yatzy(new List<Die> { new(4), new(4), new(5), new(5), new(5) }).Fives());
-            Assert.Equal(8, new Yatzy(new List<Die> { new(4), new(4), new(4), new(5), new(5) }).Fives());
-            Assert.Equal(4, new Yatzy(new List<Die> { new(4), new(5), new(5), new(5), new(5) }).Fives());
+            Assert.Equal(8, new Yatzy(new List<Die> { new(4), new(4), new(5), new(5), new(5) }).Fours());
+            Assert.Equal(12, new Yatzy(new List<Die> { new(4), new(4), new(4), new(5), new(5) }).Fours());
+            Assert.Equal(4, new Yatzy(new List<Die> { new(4), new(5), new(5), new(5), new(5) }).Fours());
         }
 
         [Fact]

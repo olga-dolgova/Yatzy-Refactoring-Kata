@@ -2,7 +2,7 @@
 {
     public class Yatzy
     {
-        protected int[] dice;
+        protected int[] dice = new int[5];
 
         public Yatzy(List<Die> dice)
         {
