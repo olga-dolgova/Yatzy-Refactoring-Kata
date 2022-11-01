@@ -1,4 +1,6 @@
-﻿namespace Yatzy
+﻿using System.Runtime.CompilerServices;
+
+namespace Yatzy
 {
     public class Yatzy
     {
@@ -36,31 +38,22 @@
             return 0;
         }
 
-        public static int Ones(int d1, int d2, int d3, int d4, int d5)
+        public int SumOfNumbers(int number)
         {
-            var sum = 0;
-            if (d1 == 1) sum++;
-            if (d2 == 1) sum++;
-            if (d3 == 1) sum++;
-            if (d4 == 1) sum++;
-            if (d5 == 1)
-                sum++;
-
-            return sum;
+            return this.dice.Count(x => x == number) * number;
+        }
+        public int ScoreOnes()
+        {
+            return SumOfNumbers(1);
         }
 
-        public static int Twos(int d1, int d2, int d3, int d4, int d5)
+        public int ScoreTwos()
         {
-            var sum = 0;
-            if (d1 == 2) sum += 2;
-            if (d2 == 2) sum += 2;
-            if (d3 == 2) sum += 2;
-            if (d4 == 2) sum += 2;
-            if (d5 == 2) sum += 2;
-            return sum;
+
+            return SumOfNumbers(2);
         }
 
-        public static int Threes(int d1, int d2, int d3, int d4, int d5)
+        public static int ScoreThrees(int d1, int d2, int d3, int d4, int d5)
         {
             int s;
             s = 0;
@@ -138,7 +131,7 @@
             return 0;
         }
 
-        public static int FourOfAKind(int _1, int _2, int d3, int d4, int d5)
+        public static int ScoreFourOfAKind(int _1, int _2, int d3, int d4, int d5)
         {
             int[] tallies;
             tallies = new int[6];

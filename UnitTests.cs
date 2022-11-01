@@ -5,7 +5,7 @@ namespace TestProject
     public class YatzyTest
     {
         [Fact]
-        public void Chance_scores_sum_of_all_dice()
+        public void CheckScoreChance()
         {
             var expected = 15;
             var actual = Yatzy.ScoreChance(2, 3, 4, 5, 1);
@@ -14,45 +14,47 @@ namespace TestProject
         }
 
         [Fact]
-        public void Fact_1s()
+        public void CheckOnes()
         {
-            Assert.True(Yatzy.Ones(1, 2, 3, 4, 5) == 1);
-            Assert.Equal(2, Yatzy.Ones(1, 2, 1, 4, 5));
-            Assert.Equal(0, Yatzy.Ones(6, 2, 2, 4, 5));
-            Assert.Equal(4, Yatzy.Ones(1, 2, 1, 1, 1));
+
+            Assert.True(new Yatzy(new List<Die> { new(1), new(2), new(3), new(4), new(5) }).ScoreOnes() == 1);
+            Assert.Equal(2, new Yatzy(new List<Die> { new(1), new(4), new(1), new(5), new(5) }).ScoreOnes());
+            Assert.Equal(0, new Yatzy(new List<Die> { new(4), new(4), new(4), new(5), new(5) }).ScoreOnes());
+            Assert.Equal(4, new Yatzy(new List<Die> { new(1), new(1), new(1), new(1), new(5) }).ScoreOnes());
+
         }
 
         [Fact]
-        public void Fact_2s()
+        public void CheckTwos()
         {
-            Assert.Equal(4, Yatzy.Twos(1, 2, 3, 2, 6));
-            Assert.Equal(10, Yatzy.Twos(2, 2, 2, 2, 2));
+            Assert.Equal(4, new Yatzy(new List<Die> { new(1), new(2), new(1), new(2), new(5) }).ScoreTwos()); 
+            Assert.Equal(10, new Yatzy(new List<Die> { new(2), new(2), new(2), new(2), new(2) }).ScoreTwos());
         }
 
         [Fact]
-        public void Fact_threes()
+        public void CheckThrees()
         {
-            Assert.Equal(6, Yatzy.Threes(1, 2, 3, 2, 3));
-            Assert.Equal(12, Yatzy.Threes(2, 3, 3, 3, 3));
+            Assert.Equal(6, Yatzy.ScoreThrees(1, 2, 3, 2, 3));
+            Assert.Equal(12, Yatzy.ScoreThrees(2, 3, 3, 3, 3));
         }
 
         [Fact]
-        public void fives()
+        public void CheckFives()
         {
             Assert.Equal(10, new Yatzy(new List<Die> { new (4), new (4), new (4), new (5), new(5) }).Fives());
             Assert.Equal(20, new Yatzy(new List<Die> { new(4), new(5), new(5), new(5), new(5) }).Fives());
         }
 
         [Fact]
-        public void four_of_a_knd()
+        public void CheckFourOfAKind()
         {
-            Assert.Equal(12, Yatzy.FourOfAKind(3, 3, 3, 3, 5));
-            Assert.Equal(20, Yatzy.FourOfAKind(5, 5, 5, 4, 5));
-            Assert.Equal(12, Yatzy.FourOfAKind(3, 3, 3, 3, 3));
+            Assert.Equal(12, Yatzy.ScoreFourOfAKind(3, 3, 3, 3, 5));
+            Assert.Equal(20, Yatzy.ScoreFourOfAKind(5, 5, 5, 4, 5));
+            Assert.Equal(12, Yatzy.ScoreFourOfAKind(3, 3, 3, 3, 3));
         }
 
         [Fact]
-        public void fours_Fact()
+        public void CheckFours()
         {
             Assert.Equal(8, new Yatzy(new List<Die> { new(4), new(4), new(5), new(5), new(5) }).Fours());
             Assert.Equal(12, new Yatzy(new List<Die> { new(4), new(4), new(4), new(5), new(5) }).Fours());
