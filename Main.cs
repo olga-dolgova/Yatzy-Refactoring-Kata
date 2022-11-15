@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using YatzyProject;
 
 namespace Yatzy
 {
@@ -6,14 +7,13 @@ namespace Yatzy
     {
         protected int[] dice = new int[5];
 
-        public Yatzy(List<Die> dice)
+        public Yatzy(DiceCalculator dice)
         {
-
-            this.dice[0] = dice[0].Face;
-            this.dice[1] = dice[1].Face;
-            this.dice[2] = dice[2].Face;
-            this.dice[3] = dice[3].Face;
-            this.dice[4] = dice[4].Face;
+            this.dice[0] = dice.DiceCollection[0];
+            this.dice[1] = dice.DiceCollection[1];
+            this.dice[2] = dice.DiceCollection[2];
+            this.dice[3] = dice.DiceCollection[3];
+            this.dice[4] = dice.DiceCollection[4];
         }
 
         public static int ScoreChance(int d1, int d2, int d3, int d4, int d5)
@@ -27,6 +27,11 @@ namespace Yatzy
             return total;
         }
 
+        public int SumOfNumbers(int number)
+        {
+            return this.dice.Count(x => x == number) * number;
+        }
+
         public static int ScoreYatzy(params int[] dice)
         {
             var counts = new int[6];
@@ -38,13 +43,10 @@ namespace Yatzy
             return 0;
         }
 
-        public int SumOfNumbers(int number)
+
+        public int ScoreOnes(int d1, int d2, int d3, int d4, int d5)
         {
-            return this.dice.Count(x => x == number) * number;
-        }
-        public int ScoreOnes()
-        {
-            return SumOfNumbers(1);
+            return this.SumOfNumbers(1);
         }
 
         public int ScoreTwos()
