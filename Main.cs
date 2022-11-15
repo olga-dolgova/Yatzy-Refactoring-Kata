@@ -49,11 +49,7 @@ namespace Yatzy
             return this.SumOfNumbers(1);
         }
 
-        public int ScoreTwos()
-        {
 
-            return SumOfNumbers(2);
-        }
 
         public static int ScoreThrees(int d1, int d2, int d3, int d4, int d5)
         {

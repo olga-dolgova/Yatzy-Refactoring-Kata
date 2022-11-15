@@ -29,18 +29,21 @@ namespace TestProject
             Assert.Equal(expected, diceCalculator.ScoreOnes());
         }
 
-        //[Fact]
-        //public void CheckTwos()
-        //{
-        //    Assert.Equal(4, new Yatzy(new List<Die> { new(1), new(2), new(1), new(2), new(5) }).ScoreTwos()); 
-        //    Assert.Equal(10, new Yatzy(new List<Die> { new(2), new(2), new(2), new(2), new(2) }).ScoreTwos());
-        //}
+        [Theory]
+        [InlineData(1, 2, 1, 2, 5, 4)]
+        [InlineData(2, 2, 2, 2, 2, 10)]
+        [InlineData(1, 1, 1, 1, 1, 0)]
+        public void GivenScoreTwos_WhenFiveDice_ThenGetSumOfTwos(int d1, int d2, int d3, int d4, int d5, int expected)
+        {
+            var diceCalculator = new DiceCalculator(d1, d2, d3, d4, d5);
+            Assert.Equal(expected, diceCalculator.ScoreTwos());
+        }
 
         //[Fact]
-        //public void CheckThrees()
+        //public void Checkthrees()
         //{
-        //    Assert.Equal(6, Yatzy.ScoreThrees(1, 2, 3, 2, 3));
-        //    Assert.Equal(12, Yatzy.ScoreThrees(2, 3, 3, 3, 3));
+        //    assert.equal(6, yatzy.scorethrees(1, 2, 3, 2, 3));
+        //    assert.equal(12, yatzy.scorethrees(2, 3, 3, 3, 3));
         //}
 
         //[Fact]
