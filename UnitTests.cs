@@ -49,20 +49,35 @@ namespace TestProject
             Assert.Equal(expected, diceCalculator.ScoreThrees());
         }
 
-        //[Fact]
-        //public void CheckFives()
-        //{
-        //    Assert.Equal(10, new Yatzy(new List<Die> { new (4), new (4), new (4), new (5), new(5) }).Fives());
-        //    Assert.Equal(20, new Yatzy(new List<Die> { new(4), new(5), new(5), new(5), new(5) }).Fives());
-        //}
+        [Theory]
+        [InlineData(1, 4, 1, 4, 5, 8)]
+        [InlineData(4, 4, 4, 4, 4, 20)]
+        [InlineData(1, 1, 1, 1, 1, 0)]
+        public void GivenScoreFours_WhenFiveDice_ThenGetSumOfFours(int d1, int d2, int d3, int d4, int d5, int expected)
+        {
+            var diceCalculator = new DiceCalculator(d1, d2, d3, d4, d5);
+            Assert.Equal(expected, diceCalculator.ScoreFours());
+        }
 
-        //[Fact]
-        //public void CheckFourOfAKind()
-        //{
-        //    Assert.Equal(12, Yatzy.ScoreFourOfAKind(3, 3, 3, 3, 5));
-        //    Assert.Equal(20, Yatzy.ScoreFourOfAKind(5, 5, 5, 4, 5));
-        //    Assert.Equal(12, Yatzy.ScoreFourOfAKind(3, 3, 3, 3, 3));
-        //}
+        [Theory]
+        [InlineData(1, 5, 1, 5, 5, 15)]
+        [InlineData(5, 5, 5, 5, 5, 25)]
+        [InlineData(1, 1, 1, 1, 1, 0)]
+        public void GivenScoreFives_WhenFiveDice_ThenGetSumOfFives(int d1, int d2, int d3, int d4, int d5, int expected)
+        {
+            var diceCalculator = new DiceCalculator(d1, d2, d3, d4, d5);
+            Assert.Equal(expected, diceCalculator.ScoreFives());
+        }
+
+        [Theory]
+        [InlineData(1, 6, 1, 6, 6, 18)]
+        [InlineData(6, 6, 6, 6, 6, 30)]
+        [InlineData(1, 1, 1, 1, 1, 0)]
+        public void GivenScoreSixes_WhenFiveDice_ThenGetSumOfSixes(int d1, int d2, int d3, int d4, int d5, int expected)
+        {
+            var diceCalculator = new DiceCalculator(d1, d2, d3, d4, d5);
+            Assert.Equal(expected, diceCalculator.ScoreSixes());
+        }
 
         //[Fact]
         //public void CheckFours()

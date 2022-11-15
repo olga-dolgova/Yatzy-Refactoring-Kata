@@ -33,5 +33,20 @@ namespace YatzyProject
         {
             return SumOfNumbers(3);
         }
+
+        public int ScoreFours()
+        {
+            return SumOfNumbers(4);
+        }
+
+        public int ScoreFives()
+        {
+            return SumOfNumbers(5);
+        }
+
+        public int ScoreSixes()
+        {
+            return SumOfNumbers(6);
+        }
     }
 }

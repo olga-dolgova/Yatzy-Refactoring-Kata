@@ -44,43 +44,6 @@ namespace Yatzy
         }
 
 
-        public int ScoreOnes(int d1, int d2, int d3, int d4, int d5)
-        {
-            return this.SumOfNumbers(1);
-        }
-
-
-
-
-
-        public int Fours()
-        {
-            int sum;
-            sum = 0;
-            for (var at = 0; at != 5; at++)
-                if (dice[at] == 4)
-                    sum += 4;
-            return sum;
-        }
-
-        public int Fives()
-        {
-            var s = 0;
-            int i;
-            for (i = 0; i < dice.Length; i++)
-                if (dice[i] == 5)
-                    s = s + 5;
-            return s;
-        }
-
-        public int sixes()
-        {
-            var sum = 0;
-            for (var at = 0; at < dice.Length; at++)
-                if (dice[at] == 6)
-                    sum = sum + 6;
-            return sum;
-        }
 
         public static int ScorePair(int d1, int d2, int d3, int d4, int d5)
         {
