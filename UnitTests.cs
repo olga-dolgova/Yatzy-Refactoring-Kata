@@ -1,7 +1,6 @@
 namespace TestProject
 {
     using NuGet.Frameworks;
-    using Yatzy;
     using YatzyProject;
 
     public class YatzyTest
@@ -16,7 +15,8 @@ namespace TestProject
         [InlineData(3, 3, 4, 5, 1, 16)]
         public void GivenScoreChance_WhenFiveDice_ThenGetSum(int d1, int d2, int d3, int d4, int d5, int expected)
         {
-            Assert.Equal(expected, Yatzy.ScoreChance(d1, d2, d3, d4, d5));
+            var diceCalculator = new DiceCalculator(d1, d2, d3, d4, d5);
+            Assert.Equal(expected, diceCalculator.ScoreChance());
         }
 
         [Theory]

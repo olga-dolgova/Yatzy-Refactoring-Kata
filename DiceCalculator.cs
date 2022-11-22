@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -197,6 +198,11 @@ namespace YatzyProject
                 if (counts[i] == 5)
                     return 50;
             return 0;
+        }
+
+        public int ScoreChance()
+        {
+            return DiceCollection.Sum();
         }
     }
 }
