@@ -98,53 +98,60 @@ namespace TestProject
             Assert.Equal(expected, diceCalculator.LargeStraight(d1, d2, d3, d4, d5));
         }
 
-        [Fact]
-        public void OnePair()
+        [Theory]
+        [InlineData(3, 4, 3, 5, 6, 6)]
+        [InlineData(5, 3, 3, 3, 5, 10)]
+        [InlineData(5, 3, 6, 6, 5, 12)]
+        public void OnePair(int d1, int d2, int d3, int d4, int d5, int expected)
         {
-            Assert.Equal(6, Yatzy.ScorePair(3, 4, 3, 5, 6));
-            Assert.Equal(10, Yatzy.ScorePair(5, 3, 3, 3, 5));
-            Assert.Equal(12, Yatzy.ScorePair(5, 3, 6, 6, 5));
+            DiceCalculator dc = new DiceCalculator(d1, d2, d3, d4, d5);
+            Assert.Equal(expected, dc.ScorePair(d1, d2, d3, d4, d5));
         }
 
-        [Fact]
-        public void SixesFact()
+        [Theory]
+        [InlineData(4, 4, 4, 5, 5, 0)]
+        [InlineData(4, 4, 6, 5, 5, 6)]
+        [InlineData(4, 6, 6, 6, 5, 18)]
+        public void SixesFact(int d1, int d2, int d3, int d4, int d5, int expected)
         {
-            Assert.Equal(0, new DiceCalculator(4, 4, 4, 5, 5).ScoreSixes());
-            Assert.Equal(6, new DiceCalculator(4, 4, 6, 5, 5).ScoreSixes());
-            Assert.Equal(18, new DiceCalculator(4, 6, 6, 6, 5).ScoreSixes());
+            Assert.Equal(expected, new DiceCalculator(d1, d2, d3, d4, d5).ScoreSixes());
         }
 
-        [Fact]
-        public void SmallStraight()
+        [Theory]
+        [InlineData(1, 2, 3, 4, 5, 15)]
+        [InlineData(2, 3, 4, 5, 1, 15)]
+        [InlineData(1, 2, 2, 4, 5, 0)]
+        public void SmallStraight(int d1, int d2, int d3, int d4, int d5, int expected)
         {
-            Assert.Equal(15, Yatzy.SmallStraight(1, 2, 3, 4, 5));
-            Assert.Equal(15, Yatzy.SmallStraight(2, 3, 4, 5, 1));
-            Assert.Equal(0, Yatzy.SmallStraight(1, 2, 2, 4, 5));
+            Assert.Equal(expected, new DiceCalculator(d1, d2, d3, d4, d5).SmallStraight(d1, d2, d3, d4, d5));
         }
 
-        [Fact]
-        public void ThreeOfAKind()
+        [Theory]
+        [InlineData(4, 4, 4, 5, 5, 12)]
+        [InlineData(4, 4, 5, 5, 5, 15)]
+        [InlineData(4, 6, 6, 6, 5, 18)]
+        public void ThreeOfAKind(int d1, int d2, int d3, int d4, int d5, int expected)
         {
-            Assert.Equal(9, Yatzy.ThreeOfAKind(3, 3, 3, 4, 5));
-            Assert.Equal(15, Yatzy.ThreeOfAKind(5, 3, 5, 4, 5));
-            Assert.Equal(9, Yatzy.ThreeOfAKind(3, 3, 3, 3, 5));
+            Assert.Equal(expected, new DiceCalculator(d1, d2, d3, d4, d5).ThreeOfAKind(d1, d2, d3, d4, d5));
         }
 
-        [Fact]
-        public void TwoPair()
+        [Theory]
+        [InlineData(4, 4, 4, 5, 5, 18)]
+        [InlineData(2, 2, 6, 1, 1, 6)]
+        [InlineData(4, 6, 6, 6, 5, 0)]
+        public void TwoPair(int d1, int d2, int d3, int d4, int d5, int expected)
         {
-            Assert.Equal(16, Yatzy.TwoPair(3, 3, 5, 4, 5));
-            Assert.Equal(16, Yatzy.TwoPair(3, 3, 5, 5, 5));
+            Assert.Equal(expected, new DiceCalculator(d1, d2, d3, d4, d5).TwoPair(d1, d2, d3, d4, d5));
+
         }
 
-        [Fact]
-        public void Yatzy_scores_50()
+        [Theory]
+        [InlineData(4, 4, 4, 5, 5, 0)]
+        [InlineData(4, 4, 4, 4, 4, 50)]
+        [InlineData(1, 1, 1, 1, 1, 50)]
+        public void Yatzy_scores_50(int d1, int d2, int d3, int d4, int d5, int expected)
         {
-            var expected = 50;
-            var actual = Yatzy.ScoreYatzy(4, 4, 4, 4, 4);
-            Assert.Equal(expected, actual);
-            Assert.Equal(50, Yatzy.ScoreYatzy(6, 6, 6, 6, 6));
-            Assert.Equal(0, Yatzy.ScoreYatzy(6, 6, 6, 6, 3));
+            Assert.Equal(expected, Yatzy.ScoreYatzy(d1, d2, d3, d4, d5));
         }
     }
 }
