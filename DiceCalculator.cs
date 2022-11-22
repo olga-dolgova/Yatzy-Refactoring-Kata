@@ -187,5 +187,16 @@ namespace YatzyProject
                 return 15;
             return 0;
         }
+
+        public int ScoreYatzy(params int[] dice)
+        {
+            var counts = new int[6];
+            foreach (var die in dice)
+                counts[die - 1]++;
+            for (var i = 0; i != 6; i++)
+                if (counts[i] == 5)
+                    return 50;
+            return 0;
+        }
     }
 }
