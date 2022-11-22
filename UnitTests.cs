@@ -79,11 +79,13 @@ namespace TestProject
             Assert.Equal(expected, diceCalculator.ScoreSixes());
         }
 
-        [Fact]
-        public void FullHouse()
+        [Theory]
+        [InlineData(6, 2, 2, 2, 6, 18)]
+        [InlineData(2, 3, 4, 5, 6, 0)]
+        public void GivenFullHouse_WhenFiveDice_ThenGetSumOfFullHouse(int d1, int d2, int d3, int d4, int d5, int expected)
         {
-            Assert.Equal(18, Yatzy.FullHouse(6, 2, 2, 2, 6));
-            Assert.Equal(0, Yatzy.FullHouse(2, 3, 4, 5, 6));
+            var diceCalculator = new DiceCalculator(d1, d2, d3, d4, d5);
+            Assert.Equal(expected, diceCalculator.FullHouse(d1, d2, d3, d4, d5));
         }
 
         [Fact]
