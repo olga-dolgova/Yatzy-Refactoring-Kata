@@ -52,38 +52,56 @@ namespace YatzyProject
 
         public int FullHouse(int d1, int d2, int d3, int d4, int d5)
         {
-            int[] tallies;
-            var _2 = false;
-            int i;
+            var isTwoOfAKind = false;
             var _2_at = 0;
-            var _3 = false;
+            var isThreeOfAKind = false;
             var _3_at = 0;
 
+            var dieNumberOccurences = UpdateCountOfDieNumberOccurences(d1, d2, d3, d4, d5);
 
-            tallies = new int[6];
-            tallies[d1 - 1] += 1;
-            tallies[d2 - 1] += 1;
-            tallies[d3 - 1] += 1;
-            tallies[d4 - 1] += 1;
-            tallies[d5 - 1] += 1;
-
-            for (i = 0; i != 6; i += 1)
-                if (tallies[i] == 2)
+            for (int i = 0; i != 6; i++)
+                if (IsTwoOfAKind(dieNumberOccurences, i))
                 {
-                    _2 = true;
+                    isTwoOfAKind = true;
                     _2_at = i + 1;
                 }
 
-            for (i = 0; i != 6; i += 1)
-                if (tallies[i] == 3)
+            for (int i = 0; i != 6; i += 1)
+                if (IsThreeOfAKind(dieNumberOccurences, i))
                 {
-                    _3 = true;
+                    isThreeOfAKind = true;
                     _3_at = i + 1;
                 }
 
-            if (_2 && _3)
+            if (isTwoOfAKind && isThreeOfAKind)
                 return _2_at * 2 + _3_at * 3;
             return 0;
+        }
+
+        private static bool IsThreeOfAKind(int[] dieNumberOccurences, int i)
+        {
+            return dieNumberOccurences[i] == 3;
+        }
+
+        private static bool IsTwoOfAKind(int[] dieNumberOccurences, int i)
+        {
+            return dieNumberOccurences[i] == 2;
+        }
+
+        private static int[] UpdateCountOfDieNumberOccurences(int d1, int d2, int d3, int d4, int d5)
+        {
+            int[] tallies = new int[6];
+            IncrementDieNumberOccurence(d1, tallies);
+            IncrementDieNumberOccurence(d2, tallies);
+            IncrementDieNumberOccurence(d3, tallies);
+            IncrementDieNumberOccurence(d4, tallies);
+            IncrementDieNumberOccurence(d5, tallies);
+            return tallies;
+        }
+
+        private static void IncrementDieNumberOccurence(int dieNumber, int[] tallies)
+        {
+            tallies[dieNumber - 1] += 1;
         }
 
         public int LargeStraight(int d1, int d2, int d3, int d4, int d5)
