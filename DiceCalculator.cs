@@ -53,29 +53,34 @@ namespace YatzyProject
         public int FullHouse(int d1, int d2, int d3, int d4, int d5)
         {
             var isTwoOfAKind = false;
-            var _2_at = 0;
             var isThreeOfAKind = false;
-            var _3_at = 0;
+            var sum = 0;
 
             var dieNumberOccurences = UpdateCountOfDieNumberOccurences(d1, d2, d3, d4, d5);
 
             for (int i = 0; i != 6; i++)
+            {
                 if (IsTwoOfAKind(dieNumberOccurences, i))
                 {
                     isTwoOfAKind = true;
-                    _2_at = i + 1;
+                    sum += (i + 1) * 2;
                 }
 
-            for (int i = 0; i != 6; i += 1)
                 if (IsThreeOfAKind(dieNumberOccurences, i))
                 {
                     isThreeOfAKind = true;
-                    _3_at = i + 1;
+                    sum += (i + 1) * 3;
                 }
+            }
 
-            if (isTwoOfAKind && isThreeOfAKind)
-                return _2_at * 2 + _3_at * 3;
+            if (IsFullHouse(isTwoOfAKind, isThreeOfAKind))
+                return sum;
             return 0;
+        }
+
+        private static bool IsFullHouse(bool isTwoOfAKind, bool isThreeOfAKind)
+        {
+            return isTwoOfAKind && isThreeOfAKind;
         }
 
         private static bool IsThreeOfAKind(int[] dieNumberOccurences, int i)
