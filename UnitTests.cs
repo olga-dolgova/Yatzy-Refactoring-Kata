@@ -79,76 +79,68 @@ namespace TestProject
             Assert.Equal(expected, diceCalculator.ScoreSixes());
         }
 
-        //[Fact]
-        //public void CheckFours()
-        //{
-        //    Assert.Equal(8, new Yatzy(new List<Die> { new(4), new(4), new(5), new(5), new(5) }).Fours());
-        //    Assert.Equal(12, new Yatzy(new List<Die> { new(4), new(4), new(4), new(5), new(5) }).Fours());
-        //    Assert.Equal(4, new Yatzy(new List<Die> { new(4), new(5), new(5), new(5), new(5) }).Fours());
-        //}
+        [Fact]
+        public void FullHouse()
+        {
+            Assert.Equal(18, Yatzy.FullHouse(6, 2, 2, 2, 6));
+            Assert.Equal(0, Yatzy.FullHouse(2, 3, 4, 5, 6));
+        }
 
-        //[Fact]
-        //public void fullHouse()
-        //{
-        //    Assert.Equal(18, Yatzy.FullHouse(6, 2, 2, 2, 6));
-        //    Assert.Equal(0, Yatzy.FullHouse(2, 3, 4, 5, 6));
-        //}
+        [Fact]
+        public void LargeStraight()
+        {
+            Assert.Equal(20, Yatzy.LargeStraight(6, 2, 3, 4, 5));
+            Assert.Equal(20, Yatzy.LargeStraight(2, 3, 4, 5, 6));
+            Assert.Equal(0, Yatzy.LargeStraight(1, 2, 2, 4, 5));
+        }
 
-        //[Fact]
-        //public void largeStraight()
-        //{
-        //    Assert.Equal(20, Yatzy.LargeStraight(6, 2, 3, 4, 5));
-        //    Assert.Equal(20, Yatzy.LargeStraight(2, 3, 4, 5, 6));
-        //    Assert.Equal(0, Yatzy.LargeStraight(1, 2, 2, 4, 5));
-        //}
+        [Fact]
+        public void OnePair()
+        {
+            Assert.Equal(6, Yatzy.ScorePair(3, 4, 3, 5, 6));
+            Assert.Equal(10, Yatzy.ScorePair(5, 3, 3, 3, 5));
+            Assert.Equal(12, Yatzy.ScorePair(5, 3, 6, 6, 5));
+        }
 
-        //[Fact]
-        //public void one_pair()
-        //{
-        //    Assert.Equal(6, Yatzy.ScorePair(3, 4, 3, 5, 6));
-        //    Assert.Equal(10, Yatzy.ScorePair(5, 3, 3, 3, 5));
-        //    Assert.Equal(12, Yatzy.ScorePair(5, 3, 6, 6, 5));
-        //}
+        [Fact]
+        public void SixesFact()
+        {
+            Assert.Equal(0, new DiceCalculator(4, 4, 4, 5, 5).ScoreSixes());
+            Assert.Equal(6, new DiceCalculator(4, 4, 6, 5, 5).ScoreSixes());
+            Assert.Equal(18, new DiceCalculator(4, 6, 6, 6, 5).ScoreSixes());
+        }
 
-        //[Fact]
-        //public void sixes_Fact()
-        //{
-        //    Assert.Equal(0, new Yatzy(new List<Die> { new(4), new(4), new(4), new(5), new(5) }).sixes());
-        //    Assert.Equal(6, new Yatzy(new List<Die> { new(4), new(4), new(6), new(5), new(5) }).sixes());
-        //    Assert.Equal(18, new Yatzy(new List<Die> { new(4), new(6), new(6), new(6), new(5) }).sixes());
-        //}
+        [Fact]
+        public void SmallStraight()
+        {
+            Assert.Equal(15, Yatzy.SmallStraight(1, 2, 3, 4, 5));
+            Assert.Equal(15, Yatzy.SmallStraight(2, 3, 4, 5, 1));
+            Assert.Equal(0, Yatzy.SmallStraight(1, 2, 2, 4, 5));
+        }
 
-        //[Fact]
-        //public void smallStraight()
-        //{
-        //    Assert.Equal(15, Yatzy.SmallStraight(1, 2, 3, 4, 5));
-        //    Assert.Equal(15, Yatzy.SmallStraight(2, 3, 4, 5, 1));
-        //    Assert.Equal(0, Yatzy.SmallStraight(1, 2, 2, 4, 5));
-        //}
+        [Fact]
+        public void ThreeOfAKind()
+        {
+            Assert.Equal(9, Yatzy.ThreeOfAKind(3, 3, 3, 4, 5));
+            Assert.Equal(15, Yatzy.ThreeOfAKind(5, 3, 5, 4, 5));
+            Assert.Equal(9, Yatzy.ThreeOfAKind(3, 3, 3, 3, 5));
+        }
 
-        //[Fact]
-        //public void three_of_a_kind()
-        //{
-        //    Assert.Equal(9, Yatzy.ThreeOfAKind(3, 3, 3, 4, 5));
-        //    Assert.Equal(15, Yatzy.ThreeOfAKind(5, 3, 5, 4, 5));
-        //    Assert.Equal(9, Yatzy.ThreeOfAKind(3, 3, 3, 3, 5));
-        //}
+        [Fact]
+        public void TwoPair()
+        {
+            Assert.Equal(16, Yatzy.TwoPair(3, 3, 5, 4, 5));
+            Assert.Equal(16, Yatzy.TwoPair(3, 3, 5, 5, 5));
+        }
 
-        //[Fact]
-        //public void two_Pair()
-        //{
-        //    Assert.Equal(16, Yatzy.TwoPair(3, 3, 5, 4, 5));
-        //    Assert.Equal(16, Yatzy.TwoPair(3, 3, 5, 5, 5));
-        //}
-
-        //[Fact]
-        //public void Yatzy_scores_50()
-        //{
-        //    var expected = 50;
-        //    var actual = Yatzy.ScoreYatzy(4, 4, 4, 4, 4);
-        //    Assert.Equal(expected, actual);
-        //    Assert.Equal(50, Yatzy.ScoreYatzy(6, 6, 6, 6, 6));
-        //    Assert.Equal(0, Yatzy.ScoreYatzy(6, 6, 6, 6, 3));
-        //}
+        [Fact]
+        public void Yatzy_scores_50()
+        {
+            var expected = 50;
+            var actual = Yatzy.ScoreYatzy(4, 4, 4, 4, 4);
+            Assert.Equal(expected, actual);
+            Assert.Equal(50, Yatzy.ScoreYatzy(6, 6, 6, 6, 6));
+            Assert.Equal(0, Yatzy.ScoreYatzy(6, 6, 6, 6, 3));
+        }
     }
 }
