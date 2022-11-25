@@ -50,63 +50,50 @@ namespace YatzyProject
             return SumOfNumbers(6);
         }
 
-        public int FullHouse(int d1, int d2, int d3, int d4, int d5)
+        public int FullHouse()
         {
             var isTwoOfAKind = false;
             var isThreeOfAKind = false;
             var sum = 0;
 
-            var dieNumberOccurences = UpdateCountOfDieNumberOccurences(d1, d2, d3, d4, d5);
-
-            for (int i = 0; i != 6; i++)
+            for (int i = 1; i <= 6; i++)
             {
-                if (IsTwoOfAKind(dieNumberOccurences, i))
+                var countOfDie = GetOccurrenceOfDieNumber(i);
+
+                if (IsTwoOfAKind(countOfDie))
                 {
                     isTwoOfAKind = true;
-                    sum += (i + 1) * 2;
+                    sum += (i) * 2;
                 }
 
-                if (IsThreeOfAKind(dieNumberOccurences, i))
+                if (IsThreeOfAKind(countOfDie))
                 {
                     isThreeOfAKind = true;
-                    sum += (i + 1) * 3;
+                    sum += (i) * 3;
                 }
             }
 
-            if (IsFullHouse(isTwoOfAKind, isThreeOfAKind))
-                return sum;
-            return 0;
+            return IsFullHouse(isTwoOfAKind, isThreeOfAKind) ? sum : 0;
+        }
+
+        private int GetOccurrenceOfDieNumber(int i)
+        {
+            return DiceCollection.Count(d => d == i);
+        }
+
+        private static bool IsThreeOfAKind(int countOfDie)
+        {
+            return countOfDie == 3;
+        }
+
+        private static bool IsTwoOfAKind(int countOfDie)
+        {
+            return countOfDie == 2;
         }
 
         private static bool IsFullHouse(bool isTwoOfAKind, bool isThreeOfAKind)
         {
             return isTwoOfAKind && isThreeOfAKind;
-        }
-
-        private static bool IsThreeOfAKind(int[] dieNumberOccurences, int i)
-        {
-            return dieNumberOccurences[i] == 3;
-        }
-
-        private static bool IsTwoOfAKind(int[] dieNumberOccurences, int i)
-        {
-            return dieNumberOccurences[i] == 2;
-        }
-
-        private static int[] UpdateCountOfDieNumberOccurences(int d1, int d2, int d3, int d4, int d5)
-        {
-            int[] tallies = new int[6];
-            IncrementDieNumberOccurence(d1, tallies);
-            IncrementDieNumberOccurence(d2, tallies);
-            IncrementDieNumberOccurence(d3, tallies);
-            IncrementDieNumberOccurence(d4, tallies);
-            IncrementDieNumberOccurence(d5, tallies);
-            return tallies;
-        }
-
-        private static void IncrementDieNumberOccurence(int dieNumber, int[] tallies)
-        {
-            tallies[dieNumber - 1] += 1;
         }
 
         public int LargeStraight(int d1, int d2, int d3, int d4, int d5)
