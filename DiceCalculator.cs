@@ -102,6 +102,17 @@ namespace YatzyProject
             return 20;
         }
 
+        public int SmallStraight()
+        {
+            var faceValues = new List<int> { 1, 2, 3, 4, 5 };
+            foreach (var faceValue in faceValues)
+            {
+                var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
+                if (countOfFaceValue != 1) { return 0; }
+            }
+            return 15;
+        }
+
         public int ScorePair(int d1, int d2, int d3, int d4, int d5)
         {
             var counts = new int[6];
@@ -166,24 +177,6 @@ namespace YatzyProject
             for (var i = 0; i < 6; i++)
                 if (t[i] >= 3)
                     return (i + 1) * 3;
-            return 0;
-        }
-
-        public int SmallStraight(int d1, int d2, int d3, int d4, int d5)
-        {
-            int[] tallies;
-            tallies = new int[6];
-            tallies[d1 - 1] += 1;
-            tallies[d2 - 1] += 1;
-            tallies[d3 - 1] += 1;
-            tallies[d4 - 1] += 1;
-            tallies[d5 - 1] += 1;
-            if (tallies[0] == 1 &&
-                tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1)
-                return 15;
             return 0;
         }
 

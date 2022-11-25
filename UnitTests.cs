@@ -123,9 +123,10 @@ namespace TestProject
         [InlineData(1, 2, 3, 4, 5, 15)]
         [InlineData(2, 3, 4, 5, 1, 15)]
         [InlineData(1, 2, 2, 4, 5, 0)]
+        [InlineData(2, 3, 4, 5, 6, 0)]
         public void SmallStraight(int d1, int d2, int d3, int d4, int d5, int expected)
         {
-            Assert.Equal(expected, new DiceCalculator(d1, d2, d3, d4, d5).SmallStraight(d1, d2, d3, d4, d5));
+            Assert.Equal(expected, new DiceCalculator(d1, d2, d3, d4, d5).SmallStraight());
         }
 
         [Theory]
