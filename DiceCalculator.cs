@@ -113,18 +113,18 @@ namespace YatzyProject
             return 15;
         }
 
-        public int ScorePair(int d1, int d2, int d3, int d4, int d5)
+        public int ScorePair()
         {
-            var counts = new int[6];
-            counts[d1 - 1]++;
-            counts[d2 - 1]++;
-            counts[d3 - 1]++;
-            counts[d4 - 1]++;
-            counts[d5 - 1]++;
-            int at;
-            for (at = 0; at != 6; at++)
-                if (counts[6 - at - 1] >= 2)
-                    return (6 - at) * 2;
+            var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 }.OrderByDescending(i => i);
+            foreach (var faceValue in faceValues)
+            {
+                var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
+                if (countOfFaceValue >= 2)
+                {
+                    return faceValue * 2;
+                }
+            }
+
             return 0;
         }
 
