@@ -52,43 +52,38 @@ namespace YatzyProject
 
         public int FullHouse()
         {
+            var score = 0;
             var isTwoOfAKind = false;
             var isThreeOfAKind = false;
-            var sum = 0;
 
-            for (int i = 1; i <= 6; i++)
+            var faceValues = new List<int> { 1, 2, 3, 4, 5, 6};
+            foreach (var faceValue in faceValues)
             {
-                var countOfDie = GetOccurrenceOfDieNumber(i);
+                var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
 
-                if (IsTwoOfAKind(countOfDie))
+                if (IsOfAKind(countOfFaceValue, 2))
                 {
                     isTwoOfAKind = true;
-                    sum += (i) * 2;
+                    score += (faceValue) * 2;
                 }
 
-                if (IsThreeOfAKind(countOfDie))
+                if (IsOfAKind(countOfFaceValue, 3))
                 {
+                    score += (faceValue) * 3;
                     isThreeOfAKind = true;
-                    sum += (i) * 3;
                 }
             }
-
-            return IsFullHouse(isTwoOfAKind, isThreeOfAKind) ? sum : 0;
+            return IsFullHouse(isTwoOfAKind, isThreeOfAKind) ? score : 0;
         }
 
-        private int GetOccurrenceOfDieNumber(int i)
+        private static bool IsOfAKind( int countOfFaceValue, int faceValue)
+        {
+            return countOfFaceValue== faceValue;
+        }
+
+        private int GetOccurrenceOfFaceValue(int i)
         {
             return DiceCollection.Count(d => d == i);
-        }
-
-        private static bool IsThreeOfAKind(int countOfDie)
-        {
-            return countOfDie == 3;
-        }
-
-        private static bool IsTwoOfAKind(int countOfDie)
-        {
-            return countOfDie == 2;
         }
 
         private static bool IsFullHouse(bool isTwoOfAKind, bool isThreeOfAKind)
@@ -96,22 +91,15 @@ namespace YatzyProject
             return isTwoOfAKind && isThreeOfAKind;
         }
 
-        public int LargeStraight(int d1, int d2, int d3, int d4, int d5)
+        public int LargeStraight()
         {
-            int[] tallies;
-            tallies = new int[6];
-            tallies[d1 - 1] += 1;
-            tallies[d2 - 1] += 1;
-            tallies[d3 - 1] += 1;
-            tallies[d4 - 1] += 1;
-            tallies[d5 - 1] += 1;
-            if (tallies[1] == 1 &&
-                tallies[2] == 1 &&
-                tallies[3] == 1 &&
-                tallies[4] == 1
-                && tallies[5] == 1)
-                return 20;
-            return 0;
+            var faceValues = new List<int> { 2, 3, 4, 5, 6 };
+            foreach (var faceValue in faceValues)
+            {
+                var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
+                if (countOfFaceValue != 1) { return 0; }
+            }
+            return 20;
         }
 
         public int ScorePair(int d1, int d2, int d3, int d4, int d5)

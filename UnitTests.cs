@@ -96,7 +96,7 @@ namespace TestProject
         public void GivenLargeStraight_WhenFiveDice_ThenScoreTwentyIfLargeStraight(int d1, int d2, int d3, int d4, int d5, int expected)
         {
             var diceCalculator = new DiceCalculator(d1, d2, d3, d4, d5);
-            Assert.Equal(expected, diceCalculator.LargeStraight(d1, d2, d3, d4, d5));
+            Assert.Equal(expected, diceCalculator.LargeStraight());
         }
 
         [Theory]
