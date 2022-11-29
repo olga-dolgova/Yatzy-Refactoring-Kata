@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\olgd\\refactoring\\bouvet\\Yatzy-Refactoring-Kata\\YatzyProject.csproj": {}
+    "C:\\Users\\eirik.nysted\\Source\\Repos\\Yatzy-Refactoring-Kata\\YatzyProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\olgd\\refactoring\\bouvet\\Yatzy-Refactoring-Kata\\YatzyProject.csproj": {
+    "C:\\Users\\eirik.nysted\\Source\\Repos\\Yatzy-Refactoring-Kata\\YatzyProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\olgd\\refactoring\\bouvet\\Yatzy-Refactoring-Kata\\YatzyProject.csproj",
+        "projectUniqueName": "C:\\Users\\eirik.nysted\\Source\\Repos\\Yatzy-Refactoring-Kata\\YatzyProject.csproj",
         "projectName": "YatzyProject",
-        "projectPath": "C:\\Users\\olgd\\refactoring\\bouvet\\Yatzy-Refactoring-Kata\\YatzyProject.csproj",
-        "packagesPath": "C:\\Users\\olgd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\olgd\\refactoring\\bouvet\\Yatzy-Refactoring-Kata\\obj\\",
+        "projectPath": "C:\\Users\\eirik.nysted\\Source\\Repos\\Yatzy-Refactoring-Kata\\YatzyProject.csproj",
+        "packagesPath": "C:\\Users\\eirik.nysted\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\eirik.nysted\\Source\\Repos\\Yatzy-Refactoring-Kata\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\olgd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\eirik.nysted\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/bouvetasa/0f95aadc-368a-411b-8000-3d0985c7fc92/_packaging/SecurityRiskAssessmentArtifacts/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -77,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

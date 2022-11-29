@@ -56,7 +56,7 @@ namespace YatzyProject
             var isTwoOfAKind = false;
             var isThreeOfAKind = false;
 
-            var faceValues = new List<int> { 1, 2, 3, 4, 5, 6};
+            var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 };
             foreach (var faceValue in faceValues)
             {
                 var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
@@ -113,40 +113,36 @@ namespace YatzyProject
             return 15;
         }
 
-        public int ScorePair()
+        public int ScoreOnePair()
         {
+            return ScorePairs(1);
+        }
+
+        public int ScoreTwoPair()
+        {
+            return ScorePairs(2);
+        }
+
+        private int ScorePairs(int numberOfPairs)
+        {
+            var sum = 0;
+            var pairCounter = 0;
             var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 }.OrderByDescending(i => i);
             foreach (var faceValue in faceValues)
             {
                 var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
                 if (countOfFaceValue >= 2)
                 {
-                    return faceValue * 2;
+                    pairCounter++;
+                    sum += faceValue * 2;
+                }
+
+                if (numberOfPairs == pairCounter)
+                {
+                    return sum;
                 }
             }
 
-            return 0;
-        }
-
-        public int TwoPair(int d1, int d2, int d3, int d4, int d5)
-        {
-            var counts = new int[6];
-            counts[d1 - 1]++;
-            counts[d2 - 1]++;
-            counts[d3 - 1]++;
-            counts[d4 - 1]++;
-            counts[d5 - 1]++;
-            var n = 0;
-            var score = 0;
-            for (var i = 0; i < 6; i += 1)
-                if (counts[6 - i - 1] >= 2)
-                {
-                    n++;
-                    score += 6 - i;
-                }
-
-            if (n == 2)
-                return score * 2;
             return 0;
         }
 
