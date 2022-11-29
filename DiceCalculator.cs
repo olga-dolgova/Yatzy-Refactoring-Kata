@@ -146,24 +146,23 @@ namespace YatzyProject
             return 0;
         }
 
-        public int ScoreFourOfAKind()
-        {
-            var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 }.OrderByDescending(i => i);
-            foreach (var faceValue in faceValues)
-            {
-                int countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
-                if (countOfFaceValue >= 4) { return faceValue * 4; }
-            }
-            return 0;
-        }
-        
         public int ScoreThreeOfAKind()
         {
+            return ScoreMultipleOfAKind(3);
+        }
+
+        public int ScoreFourOfAKind()
+        {
+            return ScoreMultipleOfAKind(4);
+        }
+
+        private int ScoreMultipleOfAKind(int amountOfAKind)
+        {
             var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 }.OrderByDescending(i => i);
             foreach (var faceValue in faceValues)
             {
                 int countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
-                if (countOfFaceValue >= 3) { return faceValue * 3; }
+                if (countOfFaceValue >= amountOfAKind) { return faceValue * amountOfAKind; }
             }
             return 0;
         }
