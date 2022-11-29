@@ -57,6 +57,22 @@ namespace YatzyProject
             var isThreeOfAKind = false;
 
             var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 };
+            var grouped = DiceCollection.GroupBy(x => x);
+            var sumOfTwos = 0;
+            var sumOfThrees = 0;
+
+            foreach (var item in grouped)
+            {
+                if (item.Count() == 2)
+                {
+                    sumOfTwos = item.Key * 2;
+                }
+                if (item.Count() == 3)
+                {
+                    sumOfThrees = item.Key * 3;
+                }
+            }
+            
             foreach (var faceValue in faceValues)
             {
                 var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
@@ -78,7 +94,7 @@ namespace YatzyProject
 
         private static bool IsOfAKind( int countOfFaceValue, int faceValue)
         {
-            return countOfFaceValue== faceValue;
+            return countOfFaceValue == faceValue;
         }
 
         private int GetOccurrenceOfFaceValue(int i)
@@ -167,14 +183,14 @@ namespace YatzyProject
             return 0;
         }
 
-        public int ScoreYatzy(params int[] dice)
+        public int ScoreYatzy()
         {
-            var counts = new int[6];
-            foreach (var die in dice)
-                counts[die - 1]++;
-            for (var i = 0; i != 6; i++)
-                if (counts[i] == 5)
-                    return 50;
+            var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 }.OrderByDescending(i => i);
+            foreach (var faceValue in faceValues)
+            {
+                int countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
+                if (countOfFaceValue >= 5) { return 50; }
+            }
             return 0;
         }
 
