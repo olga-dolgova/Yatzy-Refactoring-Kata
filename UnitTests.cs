@@ -130,13 +130,23 @@ namespace TestProject
         }
 
         [Theory]
-        [InlineData(4, 4, 4, 5, 5, 12)]
+        [InlineData(4, 4, 4, 4, 5, 12)]
         [InlineData(4, 4, 5, 5, 5, 15)]
-        [InlineData(4, 6, 6, 6, 5, 18)]
+        [InlineData(1, 1, 6, 6, 5, 0)]
         public void ThreeOfAKind(int d1, int d2, int d3, int d4, int d5, int expected)
         {
-            Assert.Equal(expected, new DiceCalculator(d1, d2, d3, d4, d5).ThreeOfAKind(d1, d2, d3, d4, d5));
+            Assert.Equal(expected, new DiceCalculator(d1, d2, d3, d4, d5).ScoreThreeOfAKind());
         }
+
+        [Theory]
+        [InlineData(4, 4, 4, 4, 5, 16)]
+        [InlineData(4, 4, 5, 5, 5, 0)]
+        [InlineData(1, 1, 1, 1, 5, 4)]
+        public void GivenFourOfAKind_WhenFiveDice_ThenGetFourTimesFaceValue(int d1, int d2, int d3, int d4, int d5, int expected)
+        {
+            Assert.Equal(expected, new DiceCalculator(d1, d2, d3, d4, d5).ScoreFourOfAKind());
+        }
+
 
         [Theory]
         [InlineData(4, 4, 4, 5, 5, 18)]
