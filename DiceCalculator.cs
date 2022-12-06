@@ -178,20 +178,17 @@ namespace YatzyProject
             foreach (var faceValue in faceValues)
             {
                 int countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
-                if (countOfFaceValue >= amountOfAKind) { return faceValue * amountOfAKind; }
+                if (countOfFaceValue >= amountOfAKind)
+                {
+                    return countOfFaceValue == 5 ? 50 : faceValue * amountOfAKind;
+                }
             }
             return 0;
         }
 
         public int ScoreYatzy()
         {
-            var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 }.OrderByDescending(i => i);
-            foreach (var faceValue in faceValues)
-            {
-                int countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
-                if (countOfFaceValue >= 5) { return 50; }
-            }
-            return 0;
+            return ScoreMultipleOfAKind(5);
         }
 
         public int ScoreChance()
