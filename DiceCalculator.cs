@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,11 @@ namespace YatzyProject
     public class DiceCalculator
     {
         public List<int> DiceCollection { get; set; }
+        public static ImmutableList<int> FaceValues = new List<int>
+        {
+            1, 2, 3, 4, 5, 6
+        }.ToImmutableList();
+
         public DiceCalculator(int dice1, int dice2, int dice3, int dice4, int dice5)
         {
             DiceCollection = new List<int> { dice1, dice2, dice3, dice4, dice5 };
@@ -56,7 +63,6 @@ namespace YatzyProject
             var isTwoOfAKind = false;
             var isThreeOfAKind = false;
 
-            var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 };
             var grouped = DiceCollection.GroupBy(x => x);
             var sumOfTwos = 0;
             var sumOfThrees = 0;
@@ -73,7 +79,7 @@ namespace YatzyProject
                 }
             }
             
-            foreach (var faceValue in faceValues)
+            foreach (var faceValue in FaceValues)
             {
                 var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
 
@@ -109,8 +115,7 @@ namespace YatzyProject
 
         public int LargeStraight()
         {
-            var faceValues = new List<int> { 2, 3, 4, 5, 6 };
-            foreach (var faceValue in faceValues)
+            foreach (var faceValue in FaceValues.Skip(1))
             {
                 var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
                 if (countOfFaceValue != 1) { return 0; }
@@ -120,8 +125,7 @@ namespace YatzyProject
 
         public int SmallStraight()
         {
-            var faceValues = new List<int> { 1, 2, 3, 4, 5 };
-            foreach (var faceValue in faceValues)
+            foreach (var faceValue in FaceValues.Take(5))
             {
                 var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
                 if (countOfFaceValue != 1) { return 0; }
@@ -143,8 +147,7 @@ namespace YatzyProject
         {
             var sum = 0;
             var pairCounter = 0;
-            var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 }.OrderByDescending(i => i);
-            foreach (var faceValue in faceValues)
+            foreach (var faceValue in FaceValues.OrderByDescending(i => i))
             {
                 var countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
                 if (countOfFaceValue >= 2)
@@ -174,8 +177,7 @@ namespace YatzyProject
 
         private int ScoreMultipleOfAKind(int amountOfAKind)
         {
-            var faceValues = new List<int> { 1, 2, 3, 4, 5, 6 }.OrderByDescending(i => i);
-            foreach (var faceValue in faceValues)
+            foreach (var faceValue in FaceValues.OrderByDescending(i => i))
             {
                 int countOfFaceValue = GetOccurrenceOfFaceValue(faceValue);
                 if (countOfFaceValue >= amountOfAKind)
